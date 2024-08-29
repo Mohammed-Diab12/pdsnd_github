@@ -35,13 +35,21 @@ def get_filters():
         (str) month - name of the month to filter by, or "all" to apply no month filter
         (str) day - name of the day of week to filter by, or "all" to apply no day filter
     """
-    print('Hello! Let\'s explore some US bikeshare data!')
-    city = get_user_input('Would you like to see data for Chicago, New York City, or Washington? ', CITY_DATA.keys())
-    month = get_user_input('Which month? January, February, March, April, May, June, or "all"? ', 
-                           ['january', 'february', 'march', 'april', 'may', 'june', 'all'])
-    day = get_user_input('Which day? Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, or "all"? ', 
-                         ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday', 'all'])
-    return city, month, day
+    print("Hello! Let\'s explore some US bikeshare data!")
+    
+    filters = {
+        'city': ('city', 'Chicago, New York City, or Washington', CITY_DATA.keys()),
+        'month': ('month', 'January, February, March, April, May, June, or "all"', 
+                  ['january', 'february', 'march', 'april', 'may', 'june', 'all']),
+        'day': ('day', 'Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, or "all"', 
+                ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday', 'all'])
+    }
+
+    results = {}
+    for key, (name, options, valid) in filters.items():
+        results[key] = get_user_input(f'Which {name}? {options}? ', valid)
+
+    return results['city'], results['month'], results['day']
 
 def load_data(city, month, day):
     """
@@ -156,7 +164,7 @@ def user_stats(df):
     print(f"\nThis took {time.time() - start_time} seconds.")
     print('-' * 40)
 
-def display_raw_data(df):
+def display_raw_data(df, batch_size=5):
     """
     Displays raw data upon request by the user.
 
@@ -164,12 +172,10 @@ def display_raw_data(df):
         df (DataFrame): The DataFrame containing the data.
     """
     row_index = 0
-    while True:
-        display_raw = get_user_input('Would you like to see 5 lines of raw data? Enter yes or no: ', ['yes', 'no'])
-        if display_raw == 'no':
-            break
-        print(df.iloc[row_index:row_index + 5])
-        row_index += 5
+    while get_user_input('Would you like to see 5 lines of raw data? Enter yes or no: ', ['yes', 'no']) == 'yes':
+        print(df.iloc[row_index:row_index + batch_size])
+        row_index += batch_size
+
 
 def main():
     """
