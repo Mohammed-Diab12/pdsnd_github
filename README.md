@@ -12,5 +12,5 @@ This code is designed to analyze **U.S. bikeshare** data from three major cities
 The files used in project : **chicago.csv**,**new_york_city.csv** and **washington.csv** [here_the_page](https://motivateco.com/) 
 
 ### Credits
-It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
+[udacity](https://github.com/udacity/pdsnd_github)
 
