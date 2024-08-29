@@ -6,7 +6,7 @@
 
 
 ### Description
-Describe what your project is about and what it does
+This code is designed to analyze **U.S. bikeshare** data from three major cities: **Chicago**, **New York City**, and **Washington**. It allows users to filter the data by _city_, _month_, and _day_ of the week and then provides various statistics based on the filtered data.
 
 ### Files used
 Include the files used
