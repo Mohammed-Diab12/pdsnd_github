@@ -156,7 +156,7 @@ def user_stats(df):
     print(f"\nThis took {time.time() - start_time} seconds.")
     print('-' * 40)
 
-def display_raw_data(df):
+def display_raw_data(df, batch_size=5):
     """
     Displays raw data upon request by the user.
 
@@ -164,12 +164,10 @@ def display_raw_data(df):
         df (DataFrame): The DataFrame containing the data.
     """
     row_index = 0
-    while True:
-        display_raw = get_user_input('Would you like to see 5 lines of raw data? Enter yes or no: ', ['yes', 'no'])
-        if display_raw == 'no':
-            break
-        print(df.iloc[row_index:row_index + 5])
-        row_index += 5
+    while get_user_input('Would you like to see 5 lines of raw data? Enter yes or no: ', ['yes', 'no']) == 'yes':
+        print(df.iloc[row_index:row_index + batch_size])
+        row_index += batch_size
+
 
 def main():
     """
