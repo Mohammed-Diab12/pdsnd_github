@@ -1,10 +1,9 @@
 ># _Bikeshare_
 
 ### Date created
-Include the date you created this project and README file.
+* The date of created this project is : `29/8/2024`.
 
-### Project Title
-Replace the Project Title
+
 
 ### Description
 Describe what your project is about and what it does
